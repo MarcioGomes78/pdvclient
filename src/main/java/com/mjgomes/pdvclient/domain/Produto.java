@@ -1,25 +1,27 @@
 package com.mjgomes.pdvclient.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-public class Product implements Serializable {
+public class Produto implements Serializable {
 
     private Long id;
     private String nome;
     private Double preco;
     private Integer quantidade;
-    private Categoria categoria;
 
-    public Product() {
+    List<Categoria> categorias = new ArrayList<>();
+
+    public Produto() {
     }
 
-    public Product(Long id, String nome, Double preco, Integer quantidade, Categoria categoria) {
+    public Produto(Long id, String nome, Double preco, Integer quantidade) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
         this.quantidade = quantidade;
-        this.categoria = categoria;
     }
 
     public Long getId() {
@@ -54,20 +56,20 @@ public class Product implements Serializable {
         this.quantidade = quantidade;
     }
 
-    public Categoria getCategoria() {
-        return categoria;
+    public List<Categoria> getCategorias() {
+        return categorias;
     }
 
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Product)) return false;
-        Product product = (Product) o;
-        return Objects.equals(id, product.id);
+        if (!(o instanceof Produto)) return false;
+        Produto produto = (Produto) o;
+        return Objects.equals(id, produto.id);
     }
 
     @Override

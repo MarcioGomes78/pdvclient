@@ -9,12 +9,12 @@ public class Categoria {
     private Long id;
     private String nome;
 
-    private List<Product> products = new ArrayList<Product>();
+    private List<Produto> products = new ArrayList<>();
 
     public Categoria() {
     }
 
-    public Categoria(Long id, String nome, List<Product> products) {
+    public Categoria(Long id, String nome, List<Produto> products) {
         this.id = id;
         this.nome = nome;
         this.products = products;
@@ -36,7 +36,7 @@ public class Categoria {
         this.nome = nome;
     }
 
-    public List<Product> getProducts() {
+    public List<Produto> getProducts() {
         return products;
     }
 

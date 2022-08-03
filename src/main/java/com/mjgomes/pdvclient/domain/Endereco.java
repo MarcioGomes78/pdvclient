@@ -10,6 +10,7 @@ public class Endereco implements Serializable {
     private String state;
     private String uf;
     private String city;
+    private String cep;
     private String publicPlace;
     private Integer number;
     private String complement;
@@ -17,12 +18,13 @@ public class Endereco implements Serializable {
     public Endereco() {
     }
 
-    public Endereco(Long id, String country, String state, String uf, String city, String publicPlace, Integer number, String complement) {
+    public Endereco(Long id, String country, String state, String uf, String city, String cep, String publicPlace, Integer number, String complement) {
         this.id = id;
         this.country = country;
         this.state = state;
         this.uf = uf;
         this.city = city;
+        this.cep = cep;
         this.publicPlace = publicPlace;
         this.number = number;
         this.complement = complement;
@@ -66,6 +68,14 @@ public class Endereco implements Serializable {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 
     public String getPublicPlace() {

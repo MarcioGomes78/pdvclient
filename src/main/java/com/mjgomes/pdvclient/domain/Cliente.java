@@ -1,21 +1,25 @@
 package com.mjgomes.pdvclient.domain;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.Objects;
+import java.util.*;
 
-public class Client implements Serializable {
+public class Cliente implements Serializable {
 
     private Long id;
     private String name;
     private String email;
     private String cpfOuCnpj;
     private Date birthDate;
+    private Integer tipo;
 
-    public Client() {
+    private List<Endereco> enderecos = new ArrayList<>();
+
+    private Set<String> telefones = new HashSet<>();
+
+    public Cliente() {
     }
 
-    public Client(Long id, String name, String email, String cpfOuCnpj, Date birthDate) {
+    public Cliente(Long id, String name, String email, String cpfOuCnpj, Date birthDate) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -66,9 +70,9 @@ public class Client implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Client)) return false;
-        Client client = (Client) o;
-        return Objects.equals(id, client.id);
+        if (!(o instanceof Cliente)) return false;
+        Cliente cliente = (Cliente) o;
+        return Objects.equals(id, cliente.id);
     }
 
     @Override
