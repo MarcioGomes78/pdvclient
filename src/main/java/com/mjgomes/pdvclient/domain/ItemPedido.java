@@ -1,10 +1,17 @@
 package com.mjgomes.pdvclient.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity
 public class ItemPedido implements Serializable {
 
+    @JsonIgnore
+    @EmbeddedId
     private ItemPedidoPK id = new ItemPedidoPK();
 
     private Double desconto;
@@ -21,6 +28,25 @@ public class ItemPedido implements Serializable {
         this.desconto = desconto;
         this.quantidade = quantidade;
         this.preco = preco;
+    }
+
+    //Para ter acesso direto ao Pedido e o Produto fora da minha class ItemPedido
+    //Isso melhora a semantica da minha class
+    @JsonIgnore
+    public Pedido getPedido() {
+        return id.getPedido();
+    }
+
+    public void setPedido(Pedido pedido) {
+        id.setPedido(pedido);
+    }
+
+    public Produto getProduto() {
+        return id.getProduto();
+    }
+
+    public void setProduto(Produto produto) {
+        id.setProduto(produto);
     }
 
     public double getSubTotal() {

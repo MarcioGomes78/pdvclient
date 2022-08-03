@@ -1,10 +1,16 @@
 package com.mjgomes.pdvclient.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity
 public class Endereco implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String country;
     private String state;
@@ -15,10 +21,21 @@ public class Endereco implements Serializable {
     private Integer number;
     private String complement;
 
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+
+    @ManyToOne
+    @JoinColumn(name = "cidade_id")
+    private Cidade cidade;
+
     public Endereco() {
     }
 
-    public Endereco(Long id, String country, String state, String uf, String city, String cep, String publicPlace, Integer number, String complement) {
+    public Endereco(Long id, String country, String state, String uf, String city, String cep, String publicPlace,
+                    Integer number, String complement, Cliente cliente, Cidade cidade) {
+        super();
         this.id = id;
         this.country = country;
         this.state = state;
@@ -28,6 +45,8 @@ public class Endereco implements Serializable {
         this.publicPlace = publicPlace;
         this.number = number;
         this.complement = complement;
+        this.cliente = cliente;
+        this.cidade = cidade;
     }
 
     public Long getId() {
@@ -100,6 +119,22 @@ public class Endereco implements Serializable {
 
     public void setComplement(String complement) {
         this.complement = complement;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Cidade getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
     }
 
     @Override

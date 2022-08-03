@@ -1,14 +1,19 @@
 package com.mjgomes.pdvclient.domain;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
 public class Categoria {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
 
+    @ManyToMany(mappedBy = "categorias")
     private List<Produto> products = new ArrayList<>();
 
     public Categoria() {

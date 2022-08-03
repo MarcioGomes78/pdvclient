@@ -1,13 +1,21 @@
 package com.mjgomes.pdvclient.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.mjgomes.pdvclient.enums.EstadoPagamento;
 
+import javax.persistence.Entity;
 import javax.xml.crypto.Data;
 import java.io.Serializable;
 
+@Entity
+@JsonTypeName("pagamentoComBoleto")
 public class PagamentoComBoleto extends Pagamento implements Serializable {
 
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Data dataVencimento;
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Data dataPagamento;
 
     public PagamentoComBoleto() {
